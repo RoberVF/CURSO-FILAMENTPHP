@@ -16,4 +16,7 @@ Dar mas memoria a php para achivos grandes del seeder de laravel-world:
 Revertir una migracion:
 `php artisan migrate:rollback`
 
+Crear recursos autogenerados:
+`php artisan make:filament-resource <NombreRecurso> --generate`
+
 
