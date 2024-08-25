@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('year');
-            $table->boolean('active')->default(true); #Por defecto activo
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

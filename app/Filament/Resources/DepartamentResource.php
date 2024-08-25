@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CalendarResource\Pages;
-use App\Filament\Resources\CalendarResource\RelationManagers;
-use App\Models\Calendar;
+use App\Filament\Resources\DepartamentResource\Pages;
+use App\Filament\Resources\DepartamentResource\RelationManagers;
+use App\Models\Departament;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,23 +13,18 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CalendarResource extends Resource
+class DepartamentResource extends Resource
 {
-    protected static ?string $model = Calendar::class;
+    protected static ?string $model = Departament::class;
     protected static ?string $navigationGroup = 'System Management';
-    protected static ?string $navigationIcon = 'heroicon-o-calendar-days';
-    protected static ?int $navigationSort = 7;
+    protected static ?string $navigationIcon = 'heroicon-o-building-storefront';
+    protected static ?int $navigationSort = 8;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required(),
-                Forms\Components\TextInput::make('year')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\Toggle::make('active')
                     ->required(),
             ]);
     }
@@ -40,13 +35,6 @@ class CalendarResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('year')
-                    ->numeric()
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\IconColumn::make('active')
-                    ->searchable()
-                    ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -79,9 +67,9 @@ class CalendarResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCalendars::route('/'),
-            'create' => Pages\CreateCalendar::route('/create'),
-            'edit' => Pages\EditCalendar::route('/{record}/edit'),
+            'index' => Pages\ListDepartaments::route('/'),
+            'create' => Pages\CreateDepartament::route('/create'),
+            'edit' => Pages\EditDepartament::route('/{record}/edit'),
         ];
     }
 }
